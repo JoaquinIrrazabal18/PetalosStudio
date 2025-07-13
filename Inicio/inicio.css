@@ -1,0 +1,215 @@
+/* Variables CSS para colores principales */
+:root { /* Define variables globales accesibles en todo el CSS. */
+    --color-marron: #8B4513; 
+    --color-dorado: #DAA520; 
+    --color-verde: #228B22; 
+    --color-texto: #2F4F4F; /* Variable para el color principal del texto (gris oscuro). */
+    --color-negro: #000000; 
+}
+
+/* Estilo del cuerpo de la página */
+body { /* Estilos aplicados a todo el contenido visible de la página. */
+    font-family: 'Nunito', sans-serif; /* Establece la fuente principal. */
+    background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #F0E68C 100%); /* Crea un fondo degradado (azul-verde-amarillo). */
+    min-height: 100vh; /* Asegura que el cuerpo ocupe al menos el 100% del alto de la pantalla (viewport height). */
+    color: var(--color-texto); /* Define el color del texto principal de la página. */
+}
+
+/* Contenedor principal centrado */
+.contenedor-principal { /* Clase para centrar el contenido principal de la tarjeta del juego. */
+    min-height: 100vh; /* Ocupa todo el alto de la pantalla para permitir el centrado vertical. */
+    display: flex; /* Habilita el diseño Flexbox para alinear elementos. */
+    align-items: center; /* Centra los ítems hijos verticalmente. */
+    justify-content: center; /* Centra los ítems hijos horizontalmente. */
+    padding: 20px; /* Añade un relleno interno al contenedor. */
+}
+
+/* Tarjeta principal del juego */
+.tarjeta-juego { /* Estilos para el contenedor principal con forma de tarjeta. */
+    background: rgba(255, 255, 255, 0.95); /* Fondo blanco con 95% de opacidad. */
+    border-radius: 20px; /* Redondea las esquinas. */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); /* Añade una sombra sutil. */
+    border: 3px solid var(--color-marron); /* Establece un borde marrón. */
+    max-width: 500px; /* Limita el ancho máximo. */
+    width: 100%; /* Ocupa el 100% del ancho disponible (hasta max-width). */
+    overflow: hidden; /* Oculta cualquier contenido que se desborde de los límites de la tarjeta. */
+}
+
+/* Encabezado del juego */
+.encabezado-juego { /* Estilos para la sección superior de la tarjeta. */
+    background: linear-gradient(135deg, var(--color-marron), var(--color-dorado)); /* Fondo degradado (marrón-dorado). */
+    color: white; /* Color de texto blanco. */
+    text-align: center; /* Centra el texto. */
+    padding: 30px 20px; /* Relleno interno. */
+}
+
+.titulo-juego { /* Estilos para el título dentro del encabezado. */
+    font-family: 'Fredoka One', cursive; /* Fuente específica para el título. */
+    font-size: 2.5rem; /* Tamaño grande de la fuente. */
+    margin-bottom: 10px; /* Margen inferior. */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Añade una sombra al texto. */
+}
+
+/* Contenido del juego */
+.contenido-juego { /* Estilos para la sección principal de contenido dentro de la tarjeta. */
+    padding: 40px 30px; /* Relleno interno. */
+}
+
+/* Botones principales */
+.boton-dino { /* Estilos base para los botones principales. */
+    background: linear-gradient(135deg, var(--color-verde), #32CD32); /* Fondo degradado verde. */ /* "Botón de "Entrar como invitado". */
+    border: none; /* Sin borde. */
+    color: white; /* Texto blanco. */  /* Color de las letras. */ 
+    padding: 15px 25px; /* Relleno interno. */
+    border-radius: 15px; /* Esquinas redondeadas. */
+    font-size: 1.1rem; /* Tamaño de las letras. */
+    font-weight: 600; /* Negrita. */
+    transition: all 0.3s ease; /* Transición (animacion) de los botones  .*/
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Sombra del botón. */
+    width: 100%; /* Ocupa el 100% del ancho disponible. */
+    margin-bottom: 15px; /* Margen inferior. */
+    cursor: pointer; /* Cambia el cursor a una mano. */
+}
+
+.boton-dino:hover { /* Estilos aplicados al pasar el mouse sobre el botón. */
+    transform: translateY(-3px); /* Mueve el botón ligeramente hacia arriba. */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Aumenta y oscurece la sombra. */
+    color: white; /* Mantiene el color del texto blanco. */
+}
+
+/* Variantes de botones */
+.boton-dorado { /* Modifica el botón base a un estilo dorado. */
+    background: linear-gradient(135deg, var(--color-dorado), #FFD700); /* Fondo degradado dorado. */
+    color: var(--color-texto); /* Texto gris oscuro. */
+}
+
+.boton-marron { /* Modifica el botón base a un estilo marrón. */
+    background: linear-gradient(135deg, var(--color-marron), #A0522D); /* Fondo degradado marrón. */
+}
+
+/* Formularios */
+.campo-formulario { /* Estilos para campos de entrada de formularios. */
+    border: 2px solid #ddd; /* Borde gris claro. */
+    border-radius: 10px; /* Esquinas redondeadas. */
+    padding: 12px 15px; /* Relleno interno. */
+    font-size: 1rem; /* Tamaño de fuente. */
+    transition: all 0.3s ease; /* Transición suave. */
+}
+
+.campo-formulario:focus { /* Estilos cuando el campo de formulario está activo (enfocado). */
+    border-color: var(--color-verde); /* Cambia el color del borde del botón a verde . */
+    box-shadow: 0 0 0 0.2rem rgba(34, 139, 34, 0.25); /* Añade un resplandor verde. */
+    outline: none; /* Elimina el contorno predeterminado del navegador. */
+}
+
+/* Botón de volver */
+.boton-volver { /* Estilos para un botón de "volver" o "atrás". */
+    background: transparent; /* Fondo transparente. */
+    border: 2px solid var(--color-marron); /* Borde marrón. */
+    color: var(--color-marron); /* Texto marrón. */
+    padding: 8px 15px; /* Relleno interno. */
+    border-radius: 10px; /* Esquinas redondeadas. */
+    font-weight: 600; /* Negrita. */
+    margin-bottom: 20px; /* Margen inferior. */
+    cursor: pointer; /* Cambia el cursor a una mano. */
+}
+
+.boton-volver:hover { /* Estilos al pasar el ratón sobre el botón de volver. */
+    background: var(--color-marron); /* Rellena el fondo de marrón. */
+    color: white; /* Cambia el texto a blanco. */
+}
+
+/* Iconos */
+.icono-grande { /* Estilos para iconos grandes. */
+    font-size: 3rem; /* Modificamos el tamaño del icono. */
+    margin-bottom: 15px; /* Margen inferior. */
+}
+
+.icono-pequeño { /* Estilos para iconos pequeños. */
+    font-size: 1.5rem; /* Modificamos el tamaño del icono (ej: dragon que está al lado del titulo). */
+    margin-right: 10px; /* Margen derecho. */
+}
+
+/* Menú principal */
+.menu-opciones { /* Estilos para un menú de opciones usando cuadrícula (Grid). */
+    display: grid; /* Habilita el diseño Grid. */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Columnas responsivas que se ajustan automáticamente (mínimo 200px, luego se distribuyen). */
+    gap: 20px; /* Espacio entre los elementos de la cuadrícula. */
+    margin-top: 20px; /* Margen superior. */
+}
+
+.opcion-menu { /* Le da estilos para cada elemento individual del menú. */
+    background: rgba(255, 255, 255, 0.9); /* Le pone el fondo a cada seccion del menú (crear partida, unirse,etc) */
+    border: 2px solid var(--color-marron); /* Borde marrón. */
+    border-radius: 15px; /* Esquinas redondeadas. */
+    padding: 25px 20px; /* Relleno interno. */
+    text-align: center; /* Centra el texto. */
+    transition: all 0.3s ease; /* Transición (animacion) de los botones al entrar al menú. */
+    cursor: pointer; /* Cambia el cursor a una mano. */
+}
+
+.opcion-menu:hover { /* Estilos al pasar el ratón sobre una opción del menú. */
+    transform: translateY(-5px); /* Mueve la opción más hacia arriba. */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Aumenta la sombra. */
+    background: white; /* Fondo blanco opaco. */
+}
+
+/* Clase para ocultar elementos */
+.oculto { /* Clase de utilidad para esconder elementos. */
+    display: none !important; /* Oculta completamente el elemento y no ocupa espacio. */
+}
+
+/* Animación de entrada */
+.aparecer { /* Clase para aplicar una animación de entrada. */
+    animation: aparecerSuave 0.5s ease-in; /* Aplica la animación 'aparecerSuave' durante 0.5s. */
+}
+.imagen-dinosaurios {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+.tablero-imagen {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+.imagen-dado {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+
+/* KeyFrames nos permite crear animaciones personalizadas en CSS */
+
+@keyframes aparecerSuave { /* Define la animación 'aparecerSuave'. */
+    from { /* Estado inicial de la animación (0%). */
+        opacity: 0; /* Completamente transparente. */
+        transform: translateY(20px); /* Ligeramente más abajo de su posición final. */
+    }
+    to { /* Estado final de la animación (100%). */
+        opacity: 1; /* Completamente opaco. */
+        transform: translateY(0); /* Vuelve a su posición original. */
+    }
+}
+
+/* Diseño responsivo */
+@media (max-width: 768px) { /* Estilos que se aplican solo en pantallas de 768px o menos de ancho. */
+    .titulo-juego { /* Ajusta el título del juego. */
+        font-size: 2rem; /* Reduce el tamaño de la fuente. */
+    }
+    .contenido-juego { /* Ajusta el relleno del contenido. */
+        padding: 30px 20px; /* Reduce el relleno. */
+    }
+    .menu-opciones { /* Ajusta el menú de opciones para pantallas pequeñas. */
+        grid-template-columns: 1fr; /* Muestra las opciones en una sola columna. */
+    }
+}
+
