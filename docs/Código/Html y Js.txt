@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draftosaurus - Juego Online</title>
+    
+    <!-- Enlaces externos necesarios -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="inicio.css">
+
+</head>
+<body>
+    <div class="contenedor-principal">
+        <div class="tarjeta-juego aparecer">
+            
+            <!-- ENCABEZADO DEL JUEGO -->
+            <div class="encabezado-juego">
+                <h1 class="titulo-juego">
+                    <i class="fas fa-dragon icono-pequeño"></i>
+                    DRAFTOSAURUS
+                </h1>
+                <p>Crea tu zoológico de dinosaurios</p>
+                <h1>Pétalos Studio</h1>
+            </div>
+
+            <!-- PANTALLA 1: VERIFICACIÓN DE EDAD -->
+            <div id="pantalla-edad" class="contenido-juego">
+                <div class="text-center mb-4">
+                    <i class="fas fa-birthday-cake icono-grande" style="color: var(--color-dorado);"></i>
+                    <h3>¡Bienvenido aventurero!</h3>
+                    <p class="text-muted">Para comenzar necesitamos conocer tu edad</p>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label" for="edad-usuario">
+                        <i class="fas fa-calendar-alt"></i> Tu edad:
+                    </label>
+                    <input type="number" class="form-control campo-formulario" id="edad-usuario" 
+                           placeholder="Ingresa tu edad" min="0" max="100">
+                </div>
+                
+                <button class="boton-dino boton-dorado" onclick="verificarEdad()">
+                    <i class="fas fa-check"></i> Continuar
+                </button>
+            </div>
+
+            <!-- PANTALLA 2: OPCIONES DE ACCESO -->
+            <div id="pantalla-bienvenida" class="contenido-juego oculto">
+                <div class="text-center mb-4">
+                    <i class="fas fa-door-open icono-grande" style="color: var(--color-verde);"></i>
+                    <h3>¿Cómo quieres jugar?</h3>
+                    <p class="text-muted">Elige tu modo de aventura preferido</p>
+                </div>
+
+                <button class="boton-dino" onclick="mostrarModoInvitado()">
+                    <i class="fas fa-user-ninja icono-pequeño"></i>
+                    Entrar como Invitado
+                </button>
+
+                <button class="boton-dino boton-dorado" onclick="mostrarRegistro()">
+                    <i class="fas fa-user-plus icono-pequeño"></i>
+                    Registrarse
+                </button>
+
+                <button class="boton-dino boton-marron" onclick="mostrarLogin()">
+                    <i class="fas fa-sign-in-alt icono-pequeño"></i>
+                    Iniciar Sesión
+                </button>
+            </div>
+
+            <!-- PANTALLA 3: MODO INVITADO -->
+            <div id="pantalla-invitado" class="contenido-juego oculto">
+                <button class="boton-volver" onclick="volverBienvenida()">
+                    <i class="fas fa-arrow-left"></i> Volver
+                </button>
+                
+                <div class="text-center mb-4">
+                    <i class="fas fa-user-ninja icono-grande" style="color: var(--color-verde);"></i>
+                    <h3>Modo Invitado</h3>
+                    <p class="text-muted">¡Perfecto! Ya estás listo para comenzar</p>
+                </div>
+
+                <button class="boton-dino" onclick="entrarAlJuego('Invitado')">
+                    <i class="fas fa-play icono-pequeño"></i>
+                    ¡Comenzar Aventura!
+                </button>
+            </div>
+
+            <!-- PANTALLA 4: REGISTRO -->
+            <div id="pantalla-registro" class="contenido-juego oculto">
+                <button class="boton-volver" onclick="volverBienvenida()">
+                    <i class="fas fa-arrow-left"></i> Volver
+                </button>
+
+                <div class="text-center mb-4">
+                    <i class="fas fa-user-plus icono-grande" style="color: var(--color-dorado);"></i>
+                    <h3>Crear Cuenta</h3>
+                    <p class="text-muted">Únete a la comunidad de exploradores</p>
+                </div>
+
+                <form id="formulario-registro">
+                    <div class="mb-3">
+                        <label class="form-label" for="usuario-registro">
+                            <i class="fas fa-user"></i> Nombre de Usuario:
+                        </label>
+                        <input type="text" class="form-control campo-formulario" id="usuario-registro" 
+                               placeholder="Tu nombre de explorador" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="password-registro">
+                            <i class="fas fa-lock"></i> Contraseña:
+                        </label>
+                        <input type="password" class="form-control campo-formulario" id="password-registro" 
+                               placeholder="Crea una contraseña segura" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="confirmar-password">
+                            <i class="fas fa-lock"></i> Confirmar Contraseña:
+                        </label>
+                        <input type="password" class="form-control campo-formulario" id="confirmar-password" 
+                               placeholder="Repite tu contraseña" required>
+                    </div>
+
+                    <button type="submit" class="boton-dino boton-dorado">
+                        <i class="fas fa-user-check icono-pequeño"></i>
+                        Crear Cuenta
+                    </button>
+                </form>
+            </div>
+
+            <!-- PANTALLA 5: LOGIN -->
+            <div id="pantalla-login" class="contenido-juego oculto">
+                <button class="boton-volver" onclick="volverBienvenida()">
+                    <i class="fas fa-arrow-left"></i> Volver
+                </button>
+
+                <div class="text-center mb-4">
+                    <i class="fas fa-sign-in-alt icono-grande" style="color: var(--color-marron);"></i>
+                    <h3>Iniciar Sesión</h3>
+                    <p class="text-muted">¡Bienvenido de vuelta, explorador!</p>
+                </div>
+
+                <form id="formulario-login">
+                    <div class="mb-3">
+                        <label class="form-label" for="usuario-login">
+                            <i class="fas fa-user"></i> Nombre de Usuario:
+                        </label>
+                        <input type="text" class="form-control campo-formulario" id="usuario-login" 
+                               placeholder="Tu nombre de explorador" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="password-login">
+                            <i class="fas fa-lock"></i> Contraseña:
+                        </label>
+                        <input type="password" class="form-control campo-formulario" id="password-login" 
+                               placeholder="Tu contraseña" required>
+                    </div>
+
+                    <button type="submit" class="boton-dino boton-marron">
+                        <i class="fas fa-sign-in-alt icono-pequeño"></i>
+                        Entrar al Juego
+                    </button>
+                </form>
+            </div>
+
+            <!-- PANTALLA 6: MENÚ PRINCIPAL -->
+            <div id="pantalla-menu" class="contenido-juego oculto">
+                <div class="text-center mb-4">
+                    <i class="fas fa-home icono-grande" style="color: var(--color-verde);"></i>
+                    <h3>¡Bienvenido <span id="nombre-jugador">Explorador</span>!</h3>
+                    <p class="text-muted">¿Qué aventura jurásica te espera hoy?</p>
+                </div>
+
+                <div class="menu-opciones">
+                    <div class="opcion-menu" onclick="mostrarPresentacion()">
+                        <i class="fas fa-info-circle icono-grande" style="color: var(--color-verde);"></i>
+                        <div style="font-size: 1.3rem; font-weight: 700; margin-bottom: 10px;">¿Qué es Draftosaurus?</div>
+                        <div style="font-size: 0.9rem; color: #666;">Conoce el juego</div>
+                    </div>
+
+                    <div class="opcion-menu" onclick="crearPartida()">
+                        <i class="fas fa-plus-circle icono-grande" style="color: var(--color-verde);"></i>
+                        <div style="font-size: 1.3rem; font-weight: 700; margin-bottom: 10px;">Crear Partida</div>
+                        <div style="font-size: 0.9rem; color: #666;">Inicia una nueva aventura</div>
+                    </div>
+
+                    <div class="opcion-menu" onclick="unirsePartida()">
+                        <i class="fas fa-users icono-grande" style="color: var(--color-verde);"></i>
+                        <div style="font-size: 1.3rem; font-weight: 700; margin-bottom: 10px;">Unirse a Partida</div>
+                        <div style="font-size: 0.9rem; color: #666;">Únete a otros exploradores</div>
+                    </div>
+
+                    <div class="opcion-menu" onclick="verHistorial()">
+                        <i class="fas fa-history icono-grande" style="color: var(--color-verde);"></i>
+                        <div style="font-size: 1.3rem; font-weight: 700; margin-bottom: 10px;">Historial</div>
+                        <div style="font-size: 0.9rem; color: #666;">Revisa tus aventuras pasadas</div>
+                    </div>
+
+                    <div class="opcion-menu" onclick="mostrarAjustes()">
+                        <i class="fas fa-cog icono-grande" style="color: var(--color-verde);"></i>
+                        <div style="font-size: 1.3rem; font-weight: 700; margin-bottom: 10px;">Ajustes</div>
+                        <div style="font-size: 0.9rem; color: #666;">Personaliza tu experiencia</div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button class="boton-volver" onclick="cerrarSesion()">
+                        <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                    </button>
+                </div>
+            </div>
+
+            <!-- PANTALLA 7: PRESENTACIÓN DEL JUEGO -->
+            <div id="pantalla-presentacion" class="contenido-juego oculto">
+                <button class="boton-volver" onclick="volverAlMenu()">
+                    <i class="fas fa-arrow-left"></i> Volver al Menú
+                </button>
+
+                <div class="text-center mb-4">
+                    <i class="fas fa-dragon icono-grande" style="color: var(--color-dorado);"></i>
+                    <h3>¿Qué es Draftosaurus?</h3>
+                </div>
+
+                <div class="text-center">
+                    <img src="../img/Dinosaurios.png" alt="Dinosaurios de Draftosaurus" class="imagen-decorativa">
+                </div>
+
+                <div style="text-align: justify; line-height: 1.6; margin: 20px 0;">
+                    <p><strong>Draftosaurus</strong> es un juego de mesa familiar y estratégico donde los jugadores compiten para construir el <strong>zoológico de dinosaurios más impresionante</strong>.</p>
+                    
+                    <p>Cada jugador selecciona dinosaurios por turnos, eligiendo cuidadosamente dónde ubicarlos en su parque para <strong>maximizar puntos</strong> según las reglas de las distintas zonas de exhibición.</p>
+                    
+                    <p>El objetivo es planificar bien el espacio, aprovechar combinaciones y restricciones para ganar la mayor cantidad de puntos posibles. Es un juego <strong>accesible, rápido y divertido</strong> que combina táctica con un tema atractivo y colorido para todas las edades.</p>
+                </div>
+
+                <button class="boton-dino boton-dorado" onclick="mostrarTablero()">
+                    <i class="fas fa-play icono-pequeño"></i>
+                    Ver el Tablero
+                </button>
+            </div>
+
+            <!-- PANTALLA 8: TABLERO DE JUEGO -->
+            <div id="pantalla-tablero" class="contenido-juego oculto">
+                <button class="boton-volver" onclick="volverAlMenu()">
+                    <i class="fas fa-arrow-left"></i> Volver al Menú
+                </button>
+
+                <div class="text-center mb-4">
+                    <i class="fas fa-map icono-grande" style="color: var(--color-verde);"></i>
+                    <h3>Tableros de Draftosaurus</h3>
+                    <p class="text-muted">Tu parque de dinosaurios</p>
+                </div>
+
+                <div class="tablero-container">
+                    <img src="../img/Tablero2.png" alt="Tablero de Draftosaurus" class="imagen-decorativa">
+                </div>
+                <div class="tablero-Inv">  
+                    <img src="../img/Invierno2.png" alt="Tablero de Invierno" class="imagen-decorativa">
+
+                </div>
+
+                <div class="elementos-juego" >
+                    <div class="elemento-juego">
+                        <img src="../img/Dinosaurios.png" alt="Dinosaurios disponibles" class="imagen-decorativa">
+                        <h5 style="color: var(--color-texto); margin-top: 10px;">Dinosaurios</h5>
+                        <p style="font-size: 0.9rem; color: #666;">6 especies diferentes, 10 dinos de cada una</p>
+                    </div>
+                    
+                    <div class="elemento-juego">
+                        <img src="../img/Dado2.png" alt="Dado de colocación" class="imagen-decorativa">
+                        <h5 style="color: var(--color-texto); margin-top: 10px;">Dado</h5>
+                        <p style="font-size: 0.9rem; color: #666;">Reglas de colocación</p>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button class="boton-dino" onclick="simularPartida()">
+                        <i class="fas fa-dice icono-pequeño"></i>
+                        Simular Partida
+                    </button>
+                </div>
+            </div>
+
+            <!-- PANTALLA 9: RESULTADOS -->
+            <div id="pantalla-resultados" class="contenido-juego oculto">
+                <div class="text-center mb-4">
+                    <i class="fas fa-trophy icono-grande" style="color: var(--color-dorado);"></i>
+                    <h3>¡Partida Finalizada!</h3>
+                    <p class="text-muted">Resultados de <span id="jugador-resultado">Explorador</span></p>
+                </div>
+
+                <div class="estadisticas-resultado">
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <i class="fas fa-dragon" style="color: var(--color-verde); font-size: 2rem;"></i>
+                            <h4 style="color: var(--color-texto); margin: 10px 0;">12</h4>
+                            <p style="color: #666;">Dinosaurios Colocados</p>
+                        </div>
+                        <div class="col-4 text-center">
+                            <i class="fas fa-map-marker-alt" style="color: var(--color-marron); font-size: 2rem;"></i>
+                            <h4 style="color: var(--color-texto); margin: 10px 0;">6</h4>
+                            <p style="color: #666;">Recintos Usados</p>
+                        </div>
+                        <div class="col-4 text-center">
+                            <i class="fas fa-dice" style="color: var(--color-dorado); font-size: 2rem;"></i>
+                            <h4 style="color: var(--color-texto); margin: 10px 0;">12</h4>
+                            <p style="color: #666;">Turnos Jugados</p>
+                        </div>
+                        <div class="col-4 text-center">
+                            <i class="fas fa-sync-alt" style="color: var(--color-dorado); font-size: 2rem;"></i>
+                            <h4 style="color: var(--color-texto); margin: 10px 0;">2</h4>
+                            <p style="color: #666;">Rondas</p>
+                        </div>
+                        </div>
+                </div>
+
+                <div class="text-center" style="margin: 30px 0;">
+                    <h2 style="color: var(--color-texto);">Puntuación Final</h2>
+                    <div class="puntos-grandes">87 puntos</div>
+                    <p class="felicitacion">
+                         ¡Excelente trabajo <span id="nombre-final">Explorador</span>!
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <button class="boton-dino boton-dorado" onclick="volverAlMenu()">
+                        <i class="fas fa-home icono-pequeño"></i>
+                        Volver al Menú
+                    </button>
+                    
+                    <button class="boton-dino" onclick="simularPartida()">
+                        <i class="fas fa-redo icono-pequeño"></i>
+                        Jugar de Nuevo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // VARIABLES GLOBALES
+        let usuarioActual = null;
+        let edadUsuario = null;
+
+        // FUNCIONES DE NAVEGACIÓN ENTRE PANTALLAS
+        function mostrarPantalla(idPantalla) {
+            const pantallas = [
+                'pantalla-edad', 
+                'pantalla-bienvenida', 
+                'pantalla-invitado', 
+                'pantalla-registro', 
+                'pantalla-login', 
+                'pantalla-menu',
+                'pantalla-presentacion',
+                'pantalla-tablero',
+                'pantalla-resultados'
+            ];
+            
+            // Ocultar todas las pantallas
+            pantallas.forEach(pantalla => {
+                document.getElementById(pantalla).classList.add('oculto');
+            });
+            
+            // Mostrar la pantalla solicitada
+            document.getElementById(idPantalla).classList.remove('oculto');
+            document.getElementById(idPantalla).classList.add('aparecer');
+        }
+
+        // FUNCIONES DE VERIFICACIÓN Y NAVEGACIÓN
+        function verificarEdad() {
+            const campoEdad = document.getElementById('edad-usuario');
+            const edad = parseInt(campoEdad.value);
+            
+            if (!edad || edad < 8 || edad > 100) {
+                alert('Por favor, ingresa una edad válida');
+                return;
+            }
+            
+            edadUsuario = edad;
+            
+            if (edad < 12) {
+                alert('Recuerda siempre pedir ayuda a un adulto cuando juegues online');
+            }
+            
+            setTimeout(() => {
+                mostrarPantalla('pantalla-bienvenida');
+            }, 500);
+        }
+
+        function volverBienvenida() {
+            mostrarPantalla('pantalla-bienvenida');
+        }
+
+        function mostrarModoInvitado() {
+            mostrarPantalla('pantalla-invitado');
+        }
+
+        function mostrarRegistro() {
+            mostrarPantalla('pantalla-registro');
+        }
+
+        function mostrarLogin() {
+            mostrarPantalla('pantalla-login');
+        }
+
+        function entrarAlJuego(nombreUsuario) {
+            usuarioActual = nombreUsuario;
+            document.getElementById('nombre-jugador').textContent = nombreUsuario;
+            mostrarPantalla('pantalla-menu');
+        }
+
+        function volverAlMenu() {
+            mostrarPantalla('pantalla-menu');
+        }
+
+        // NUEVAS FUNCIONES PARA LAS PANTALLAS AGREGADAS
+        function mostrarPresentacion() {
+            mostrarPantalla('pantalla-presentacion');
+        }
+
+        function mostrarTablero() {
+            mostrarPantalla('pantalla-tablero');
+        }
+
+        function simularPartida() {
+            document.getElementById('jugador-resultado').textContent = usuarioActual || 'Explorador';
+            document.getElementById('nombre-final').textContent = usuarioActual || 'Explorador';
+
+            const puntos = Math.floor(Math.random() * 100) + 1;
+            const dinos = 12;
+            const recintos = Math.floor(Math.random() * 7);
+            const turnos = dinos;
+            const rondas = 2;
+
+            document.querySelector('.puntos-grandes').textContent = `${puntos} puntos`;
+            document.querySelectorAll('.estadisticas-resultado h4')[0].textContent = dinos;
+            document.querySelectorAll('.estadisticas-resultado h4')[1].textContent = recintos;
+            document.querySelectorAll('.estadisticas-resultado h4')[2].textContent = turnos;
+          
+            mostrarPantalla('pantalla-resultados');
+        }   
+        // MANEJADORES DE FORMULARIOS
+        document.getElementById('formulario-registro').addEventListener('submit', function(evento) {
+            evento.preventDefault();
+            
+            const usuario = document.getElementById('usuario-registro').value;
+            const password = document.getElementById('password-registro').value;
+            const confirmarPassword = document.getElementById('confirmar-password').value;
+            
+            if (password !== confirmarPassword) {
+                alert('Las contraseñas no coinciden');
+                return;
+            }
+            
+            if (password.length < 6) {
+                alert('La contraseña debe tener al menos 6 caracteres');
+                return;
+            }
+            
+            alert('¡Cuenta creada exitosamente! Bienvenido a Draftosaurus, ' + usuario + '!');
+            
+            localStorage.setItem('usuario_draftosaurus', JSON.stringify({
+                usuario: usuario,
+                edad: edadUsuario,
+                fechaRegistro: new Date().toISOString()
+            }));
+            
+            entrarAlJuego(usuario);
+        });
+
+        document.getElementById('formulario-login').addEventListener('submit', function(evento) {
+            evento.preventDefault();
+            
+            const usuario = document.getElementById('usuario-login').value;
+            const password = document.getElementById('password-login').value;
+            
+            if (usuario.length === 0 || password.length === 0) {
+                alert('Por favor, completa todos los campos');
+                return;
+            }
+            
+            alert('¡Bienvenido de vuelta, ' + usuario + '!');
+            entrarAlJuego(usuario);
+        });
+
+        // FUNCIONES DEL MENÚ PRINCIPAL
+        function crearPartida() {
+            alert('🦕 ¡Función "Crear Partida" próximamente!\n\nAquí podrás:\n• Configurar número de jugadores\n• Crear sala\n• Invitar amigos');
+        }
+
+        function unirsePartida() {
+            alert('🦖 ¡Función "Unirse a Partida" próximamente!\n\nAquí podrás:\n• Ver partidas disponibles\n• Ingresar código de partida\n• Partidas rápidas');
+        }
+
+        function verHistorial() {
+            alert('📊 ¡Función "Historial" próximamente!\n\nAquí podrás ver:\n• Partidas jugadas\n• Estadísticas personales\n• Logros desbloqueados');
+        }
+
+        function mostrarAjustes() {
+            alert('⚙️ ¡Función "Ajustes" próximamente!\n\nAquí podrás configurar:\n• Sonidos y música\n• Notificaciones\n• Perfil de usuario');
+        }
+
+        function cerrarSesion() {
+            if (confirm('¿Estás seguro de que quieres cerrar sesión?')) {
+                usuarioActual = null;
+                edadUsuario = null;
+                
+                document.getElementById('edad-usuario').value = '';
+                document.getElementById('formulario-registro').reset();
+                document.getElementById('formulario-login').reset();
+                
+                mostrarPantalla('pantalla-edad');
+            }
+        }
+
+        // INICIALIZACIÓN DE LA APLICACIÓN
+        document.addEventListener('DOMContentLoaded', function() {
+            mostrarPantalla('pantalla-edad');
+        });
+    </script>
+</body>
+</html>
