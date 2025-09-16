@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test AJAX - Draftosaurus</title>
+</head>
+<body>
+    <h1>Test de AJAX</h1>
+    <div id="result"></div>
+    <button onclick="testRegistro()">Test Registro</button>
+    <button onclick="testLogin()">Test Login</button>
+
+    <script>
+        async function testRegistro() {
+            const result = document.getElementById('result');
+            result.innerHTML = 'Enviando petición...';
+            
+            try {
+                const response = await fetch('routes/usuario.php?action=registrar', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        nombre_usuario: 'test_user',
+                        email: 'test@example.com',
+                        password: '123456',
+                        edad: 25
+                    })
+                });
+
+                console.log('Response status:', response.status);
+                console.log('Response headers:', response.headers);
+
+                const data = await response.text(); // Usar text() primero para ver qué llega
+                console.log('Raw response:', data);
+
+                result.innerHTML = `
+                    <h3>Respuesta del servidor:</h3>
+                    <pre>${data}</pre>
+                `;
+
+                // Intentar parsear como JSON
+                try {
+                    const jsonData = JSON.parse(data);
+                    console.log('JSON parsed:', jsonData);
+                } catch (e) {
+                    console.error('Error parsing JSON:', e);
+                    result.innerHTML += `<p style="color: red;">Error: La respuesta no es JSON válido</p>`;
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                result.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+
+        async function testLogin() {
+            const result = document.getElementById('result');
+            result.innerHTML = 'Probando login...';
+            
+            try {
+                const response = await fetch('routes/usuario.php?action=login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: 'test@example.com',
+                        password: '123456'
+                    })
+                });
+
+                const data = await response.text();
+                result.innerHTML = `<h3>Login Response:</h3><pre>${data}</pre>`;
+
+            } catch (error) {
+                result.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
