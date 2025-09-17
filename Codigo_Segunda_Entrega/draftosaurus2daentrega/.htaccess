@@ -1,0 +1,11 @@
+# Activar el motor de reescritura
+RewriteEngine On
+
+# REGLA PARA LA API:
+# Si la URL comienza con "api/", reenvía la petición
+# al router que está dentro de la carpeta /api.
+RewriteRule ^api/(.*)$ api/index.php [L]
+
+# REGLA PARA LA PÁGINA DE INICIO:
+# Si la URL es la raíz del sitio, muestra la página de inicio.
+RewriteRule ^$ public/inicio.php [L]
