@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #7dd3fc 0%, #86efac 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.box {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.box h2 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.box p {
+    margin-bottom: 20px;
+    font-size: 0.95em;
+    color: #555;
+}
+
+.box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+.box button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    background: #16a34a;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.box button:hover {
+    background: #15803d;
+}
+
+.back-link, .add-account {
+    margin-top: 15px;
+    display: block;
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.back-link:hover, .add-account:hover {
+    text-decoration: underline;
+}
+
+.account-option {
+    display: block;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.account-option:hover {
+    background: #f3f4f6;
+    border-color: #16a34a;
+}
